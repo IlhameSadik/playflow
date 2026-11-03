@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { getAllAdminTransactions } from "../services/adminTransactionService";
+import AdminSidebar from "../components/AdminSidebar";
 
 export default function AdminTransactions() {
     const [transactions, setTransactions] = useState([]);
@@ -58,6 +59,10 @@ export default function AdminTransactions() {
     };
 
     return (
+        <div className="flex min-h-screen bg-slate-50">
+    <AdminSidebar />
+
+    <div className="min-w-0 flex-1">
         <div className="min-h-screen bg-gray-50 p-6 md:p-8">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-800">
@@ -183,6 +188,8 @@ export default function AdminTransactions() {
                         </tbody>
                     </table>
                 )}
+            </div>
+        </div>
             </div>
         </div>
     );

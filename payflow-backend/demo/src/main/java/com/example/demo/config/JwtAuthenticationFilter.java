@@ -67,6 +67,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                 return new SimpleGrantedAuthority(name);
                             })
                             .toList();
+                            System.out.println("EMAIL : " + email);
+                            System.out.println("AUTHORITIES : " + authorities);
+                            System.out.println("METHOD : " + request.getMethod());
+                            System.out.println("URL : " + request.getServletPath());
 
                     var authentication =
                             new UsernamePasswordAuthenticationToken(

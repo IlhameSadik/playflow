@@ -329,5 +329,63 @@ public List<Transaction> filterTransactions(
             })
             .toList();
 }
+@Transactional
+public Transaction adminDeposit(
+        String accountNumber,
+        BigDecimal amount,
+        String adminEmail) {
 
+    // 1. Vérifier le montant
+    if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+        throw new BusinessException(
+                "Amount must be greater than zero");
+    }
+
+    // 2. Rechercher le compte
+    Account account = accountRepository
+            .findByAccountNumber(accountNumber)
+            .orElseThrow(() ->
+                    new BusinessException("Account not found"));
+
+    // 3. Vérifier que le compte est actif
+    if (account.getStatus() != AccountStatus.ACTIVE) {
+        throw new BusinessException("Account is not active");
+    }
+
+    // 4. Créditer le compte
+    account.setBalance(account.getBalance().add(amount));
+    accountRepository.save(account);
+
+    // 5. Créer la transaction
+    Transaction transaction = new Transaction();
+
+    transaction.setSourceAccount(account);
+    transaction.setDestinationAccount(account);
+    transaction.setAmount(amount);
+    transaction.setDescription("Admin deposit");
+    transaction.setType(TransactionType.DEPOSIT);
+    transaction.setIdempotencyKey(
+            "ADMIN-DEPOSIT-" + java.util.UUID.randomUUID());
+    transaction.setStatus(TransactionStatus.COMPLETED);
+    transaction.setCreatedAt(LocalDateTime.now());
+
+    transaction = transactionRepository.save(transaction);
+
+    // 6. Enregistrer l'action de l'administrateur
+    auditLogService.createLog(
+            "ADMIN_DEPOSIT",
+            adminEmail,
+            "Admin deposited " + amount + " MAD into account "
+                    + account.getAccountNumber());
+
+    // 7. Notifier le propriétaire
+    notificationService.createNotification(
+            account.getOwner().getId(),
+            "Deposit received",
+            "An amount of " + amount
+                    + " MAD was deposited into your account.");
+        
+
+    return transaction;
+}
 }

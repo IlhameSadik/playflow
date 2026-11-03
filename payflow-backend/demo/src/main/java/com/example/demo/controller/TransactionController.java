@@ -202,4 +202,34 @@ public class TransactionController {
 
         return ResponseEntity.ok(response);
     }
+    // =========================
+// ADMIN DEPOSIT
+// =========================
+
+@PostMapping("/admin/deposit/{accountNumber}")
+public ResponseEntity<TransactionResponse> adminDeposit(
+        @PathVariable String accountNumber,
+        @Valid @RequestBody DepositRequest request,
+        Authentication authentication) {
+
+    Transaction transaction =
+            transactionService.adminDeposit(
+                    accountNumber,
+                    request.getAmount(),
+                    authentication.getName()
+            );
+
+    TransactionResponse response = new TransactionResponse(
+            transaction.getId(),
+            transaction.getSourceAccount().getAccountNumber(),
+            transaction.getDestinationAccount().getAccountNumber(),
+            transaction.getAmount(),
+            transaction.getDescription(),
+            transaction.getType(),
+            transaction.getStatus(),
+            transaction.getCreatedAt()
+    );
+    
+    return ResponseEntity.ok(response);
+}
 }

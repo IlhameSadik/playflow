@@ -1,0 +1,32 @@
+
+# Frontend
+payflow-frontend/node_modules/
+payflow-frontend/dist/
+payflow-frontend/dist-ssr/
+
+# Backend
+payflow-backend/target/
+payflow-backend/build/
+
+# Secrets
+.env
+.env.*
+!.env.example
+**/application-local.properties
+**/application-local.yml
+
+# Logs
+*.log
+logs/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db

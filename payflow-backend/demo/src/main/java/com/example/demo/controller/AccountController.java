@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 import com.example.demo.dto.AccountResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
@@ -75,5 +76,15 @@ private AccountResponse toResponse(Account account) {
             account.getStatus().name(),
             account.getCreatedAt()
     );
+}
+
+@GetMapping("/admin/user/{userId}")
+@PreAuthorize("hasRole('ADMIN')")
+public ResponseEntity<AccountResponse> getAccountByUserAdmin(
+        @PathVariable Long userId) {
+
+    Account account = accountService.getAccountByUserId(userId);
+
+    return ResponseEntity.ok(toResponse(account));
 }
 }

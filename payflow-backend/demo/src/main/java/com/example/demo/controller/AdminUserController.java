@@ -65,4 +65,14 @@ public ResponseEntity<AdminUserResponse> updateStatus(
                 user.getCreatedAt()
         );
     }
+
+    @DeleteMapping("/{id}")
+public ResponseEntity<Void> deleteUser(
+        @PathVariable Long id,
+        Authentication authentication) {
+
+    adminUserService.deleteUser(id, authentication.getName());
+
+    return ResponseEntity.noContent().build();
+}
 }

@@ -9,23 +9,28 @@ import com.example.demo.entity.Role;
 import com.example.demo.entity.UserStatus;
 import com.example.demo.repository.RoleRepository;
 import java.time.LocalDateTime;
+import com.example.demo.service.AccountService;
+import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuditLogService auditLogService;
     private final RoleRepository roleRepository;
+    private final AccountService accountService;
 
     public AuthService(
             UserRepository userRepository,
             PasswordEncoder passwordEncoder,
             AuditLogService auditLogService,
-            RoleRepository roleRepository) {
+            RoleRepository roleRepository,
+        AccountService accountService) {
 
     this.userRepository = userRepository;
     this.passwordEncoder = passwordEncoder;
     this.auditLogService = auditLogService;
     this.roleRepository = roleRepository;
+    this.accountService = accountService;
 }
 
     public User login(String email, String password) {
@@ -58,6 +63,8 @@ try {
 }
         return user;
     }
+    @Transactional
+
     public User register(
         String firstName,
         String lastName,
@@ -87,13 +94,17 @@ try {
             .build();
 
     User savedUser = userRepository.save(user);
+    accountService.createAccount(savedUser.getId());
 
+   try {
     auditLogService.createLog(
             "REGISTER",
             savedUser.getEmail(),
             "User registered successfully"
     );
-
+} catch (Exception e) {
+    System.out.println("DEBUG REGISTER AUDIT ERROR: " + e.getMessage());
+}
     return savedUser;
 }
 }

@@ -107,18 +107,24 @@ const notificationsCount = notifications.filter(
     const [loading, setLoading] = useState(true);
     const [copied, setCopied] = useState(false);
 
-   useEffect(() => {
+  useEffect(() => {
     const loadData = async () => {
         try {
-            const [accountData, transactionData] = await Promise.all([
-                getMyAccount(),
-                getMyTransactions()
-            ]);
-
+            const accountData = await getMyAccount();
             setAccount(accountData);
-            setTransactions(transactionData);
         } catch (err) {
-            setError("Impossible de récupérer les données.");
+            console.error("Erreur récupération compte :", err);
+            setError("Impossible de récupérer votre compte.");
+        }
+
+        try {
+            const transactionData = await getMyTransactions();
+            setTransactions(
+                Array.isArray(transactionData) ? transactionData : []
+            );
+        } catch (err) {
+            console.error("Erreur récupération transactions :", err);
+            setTransactions([]);
         } finally {
             setLoading(false);
         }
@@ -129,6 +135,7 @@ const notificationsCount = notifications.filter(
             const data = await getMyNotifications();
             setNotifications(Array.isArray(data) ? data : []);
         } catch (err) {
+            console.error("Erreur notifications :", err);
             setNotificationsError(
                 "Impossible de charger les notifications."
             );
@@ -140,7 +147,6 @@ const notificationsCount = notifications.filter(
     loadData();
     loadNotifications();
 }, []);
-
     const handleLogout = () => {
         logout();
         navigate("/login");

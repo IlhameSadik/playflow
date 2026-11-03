@@ -17,4 +17,6 @@ List<User> findByStatus(UserStatus status);
     FROM User u
     WHERE u.status = :status
 """)
-long countByStatus(@Param("status") UserStatus status);}
+long countByStatus(@Param("status") UserStatus status);
+boolean existsByIdAndRoles_Name(Long userId, String roleName);
+}

@@ -1,3 +1,4 @@
+
 import axios from "axios";
 
 const api = axios.create({
@@ -9,10 +10,17 @@ const api = axios.create({
 
 api.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem("token");
+        // Pas de token pour l'inscription et la connexion
+        const isPublicRoute =
+            config.url?.includes("/auth/register") ||
+            config.url?.includes("/auth/login");
 
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+        if (!isPublicRoute) {
+            const token = localStorage.getItem("token");
+
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`;
+            }
         }
 
         return config;

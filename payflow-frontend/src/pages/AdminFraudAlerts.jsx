@@ -4,6 +4,7 @@ import {
   getAllFraudAlerts,
   updateFraudAlertStatus,
 } from "../services/adminFraudAlertService";
+import AdminSidebar from "../components/AdminSidebar";
 
 const statusStyles = {
   OPEN: "bg-red-100 text-red-700",
@@ -80,6 +81,10 @@ export default function AdminFraudAlerts() {
   };
 
   return (
+    <div className="flex min-h-screen bg-slate-50">
+        <AdminSidebar />
+    
+        <div className="min-w-0 flex-1">
     <main className="min-h-screen bg-slate-50 px-4 py-8 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-6">
@@ -235,5 +240,6 @@ export default function AdminFraudAlerts() {
         </section>
       </div>
     </main>
+    </div> </div>
   );
 }

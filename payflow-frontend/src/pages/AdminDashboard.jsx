@@ -5,7 +5,7 @@ import { getAdminStats } from "../services/adminStatsService";
 import { getAllFraudAlerts } from "../services/adminFraudAlertService";
 import { getAllAdminTransactions } from "../services/adminTransactionService";
 import { Link, useNavigate } from "react-router-dom";
-
+import AdminSidebar from "../components/AdminSidebar";
 const Icon = ({ d }) => (
   <svg
     className="h-6 w-6"
@@ -147,20 +147,13 @@ function AdminDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-8">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">
-              P
-            </div>
-            <h1 className="text-lg font-bold tracking-tight text-slate-900">
-              Pay<span className="text-blue-600">Flow</span>{" "}
-              <span className="ml-1 rounded-md bg-slate-900 px-1.5 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-white">
-                Admin
-              </span>
-            </h1>
-          </div>
+  <div className="flex min-h-screen bg-slate-50">
+    <AdminSidebar />
+
+    <div className="min-w-0 flex-1">
+      <header className="sticky top-0 z-10 border-b justify-end border-slate-200 bg-white/80 backdrop-blur">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-end px-4 sm:px-8">
+          
 
           <div className="flex items-center gap-3 sm:gap-4">
             <div className="hidden text-right sm:block">
@@ -174,15 +167,7 @@ function AdminDashboard() {
               {getInitials(user)}
             </div>
 
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 sm:px-4"
-            >
-              <span className="h-4 w-4">
-                <Icon d={icons.logout} />
-              </span>
-              <span className="hidden sm:inline">Déconnexion</span>
-            </button>
+           
           </div>
         </div>
       </header>
@@ -372,6 +357,7 @@ function AdminDashboard() {
         </section>
       </main>
     </div>
+      </div>
   );
 }
 
