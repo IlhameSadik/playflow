@@ -218,17 +218,19 @@ PayFlow provides dedicated interfaces for customers and administrators.
 #### 3. User Dashboard
 ![User Dashboard](screenshots/dashbordUser.png)
 
-#### 4. Money Transfer
-![Money Transfer](screenshots/transfertUser.png)
-
-#### 5. Transaction History
+#### 4. Transaction History
 ![Transaction History](screenshots/transactionuser.png)
-
-#### 6. Notifications
+ #### 5. Notifications
 ![User Notifications](screenshots/notificationUser.png)
 
+#### 6. Money Transfer
+![Money Transfer](screenshots/transfertUser.png)
 
-![User Deposit Details](screenshots/depotargentuser1.png)
+
+
+
+
+
 
 ### 🛡️ Administrator Interface
 
@@ -242,6 +244,7 @@ PayFlow provides dedicated interfaces for customers and administrators.
 
 #### 4. Deposit Management
 ![Admin Deposit](screenshots/depotargent.png)
+ ![User Deposit Details](screenshots/depotargentuser1.png)
 
 #### 5. Fraud Alerts
 ![Fraud Alerts](screenshots/alertsadmin.png)
