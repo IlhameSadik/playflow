@@ -203,9 +203,48 @@ npm run dev
 
 Le frontend est accessible à l'adresse indiquée par Vite dans le terminal (par exemple `http://localhost:5174`).
 
-## 🎥 Démonstration vidéo
+## 📸 Application Screenshots
 
-[▶️ Voir la démonstration de PayFlow (MP4)](screenrecord/payflow.mp4)
+PayFlow provides dedicated interfaces for customers and administrators.
+
+### 👤 User Interface
+
+#### 1. Login
+![Login](screenshots/login.png)
+
+#### 2. Account Creation
+![Create Account](screenshots/creerAccount.png)
+
+#### 3. User Dashboard
+![User Dashboard](screenshots/dashbordUser.png)
+
+#### 4. Money Transfer
+![Money Transfer](screenshots/transfertUser.png)
+
+#### 5. Transaction History
+![Transaction History](screenshots/transactionuser.png)
+
+#### 6. Notifications
+![User Notifications](screenshots/notificationUser.png)
+
+#### 7. User Deposit
+![User Deposit](screenshots/depotargentuser.png)
+
+![User Deposit Details](screenshots/depotargentuser1.png)
+
+### 🛡️ Administrator Interface
+
+#### 1. Admin Dashboard
+![Admin Dashboard](screenshots/dashbordAdmin.png)
+
+#### 2. User Management
+![User Management](screenshots/gestionuseradmin.png)
+
+#### 3. Deposit Management
+![Admin Deposit](screenshots/depotargent.png)
+
+#### 4. Fraud Alerts
+![Fraud Alerts](screenshots/alertsadmin.png)
 ## 🧪 Tests
 
 Les endpoints backend peuvent être testés avec Postman.
