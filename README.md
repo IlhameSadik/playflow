@@ -239,11 +239,11 @@ PayFlow provides dedicated interfaces for customers and administrators.
 
 #### 2. User Management
 ![User Management](screenshots/gestionuseradmin.png)
-#### 3. User Deposit
-![User Deposit](screenshots/depotargentuser.png)
 
 #### 4. Deposit Management
 ![Admin Deposit](screenshots/depotargent.png)
+![User Deposit](screenshots/depotargentuser.png)
+
  ![User Deposit Details](screenshots/depotargentuser1.png)
 
 #### 5. Fraud Alerts
