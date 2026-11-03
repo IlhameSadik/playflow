@@ -227,8 +227,6 @@ PayFlow provides dedicated interfaces for customers and administrators.
 #### 6. Notifications
 ![User Notifications](screenshots/notificationUser.png)
 
-#### 7. User Deposit
-![User Deposit](screenshots/depotargentuser.png)
 
 ![User Deposit Details](screenshots/depotargentuser1.png)
 
@@ -239,11 +237,13 @@ PayFlow provides dedicated interfaces for customers and administrators.
 
 #### 2. User Management
 ![User Management](screenshots/gestionuseradmin.png)
+#### 3. User Deposit
+![User Deposit](screenshots/depotargentuser.png)
 
-#### 3. Deposit Management
+#### 4. Deposit Management
 ![Admin Deposit](screenshots/depotargent.png)
 
-#### 4. Fraud Alerts
+#### 5. Fraud Alerts
 ![Fraud Alerts](screenshots/alertsadmin.png)
 ## 🧪 Tests
 
